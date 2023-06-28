@@ -1,6 +1,8 @@
 #include <SimpleDHT.h>
-int pinDHT11 = 4;
-SimpleDHT11 dht11(pinDHT11);
+int sensorIn = 4;
+int relaiControllOut = 3;
+
+SimpleDHT11 dht11(sensorIn);
 
 float checkTemp()
 {
@@ -20,8 +22,8 @@ float checkTemp()
 void setup()
 {
     Serial.begin(115200);
-    pinMode(3, OUTPUT);
-    digitalWrite(3, LOW);
+    pinMode(relaiControllOut, OUTPUT);
+    digitalWrite(relaiControllOut, LOW);
 }
 void loop()
 {
@@ -29,11 +31,11 @@ void loop()
     Serial.println(erg);
     if (erg > 26)
     {
-        digitalWrite(3, HIGH);
+        digitalWrite(relaiControllOut, HIGH);
     }
     else
     {
-        digitalWrite(3, LOW);
+        digitalWrite(relaiControllOut, LOW);
     }
     delay(1500);
 }
